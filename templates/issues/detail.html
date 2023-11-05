@@ -1,20 +1,33 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ post.title }}{% endblock title %}
+{% block title %}{{ issue.title }}{% endblock title %}
 
 {% block content %}
 
-<h4>{{ post.title }}</h4>
-<h5>{{ post.subtitle }}</h5>
-<p>{{ post.body }}</p>
-<h6>{{ post.author }}</h6>
-<small>Created on: {{ post.created_on }}</small>
-{% if user == post.author %}
-<a href="{% url 'edit' post.id %}" class="btn btn-primary">
-    Edit...
-</a>
-<a href="{% url 'delete' post.id %}" class="btn btn-danger">
-    Delete...
-</a>
-{% endif %}
+
+<h1>Details</h1>
+<div class="container">
+
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">{{ issue.summary }}</h4>
+        <h5 class="card-subtitle mb-2 text-body-secondary">{{ issue.description }}</h5>
+        <p class="card-text">{{ issue.assignee }}</p>
+        <h6 class="card-subtitle mb-2 text-body-secondary">{{ issue.reporter }}</h6>
+        <small>{{ issue.created_on }}</small>
+        <a href="{% url 'detail' issue.id %}">View Detail</a>
+        <a href="{% url 'edit' issue.id %}" class="btn btn-primary">
+            Edit...
+            </a>
+            <a href="{% url 'delete' issue.id %}" class="btn btn-danger">
+            Delete...
+            </a>
+        
+    </div>
+</div>
+<br />
+
+
+</div>
 {% endblock content %}

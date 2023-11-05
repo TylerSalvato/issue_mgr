@@ -15,9 +15,14 @@
         <p class="card-text">{{ issue.assignee }}</p>
         <h6 class="card-subtitle mb-2 text-body-secondary">{{ issue.reporter }}</h6>
         <small>{{ issue.created_on }}</small>
-        <a href="{% url 'detail' post.id %}" class="card-link">
-            Continue reading...
-        </a>
+        <a href="{% url 'detail' issue.id %}">View Detail</a>
+        <a href="{% url 'edit' issue.id %}" class="btn btn-primary">
+            Edit...
+            </a>
+            <a href="{% url 'delete' issue.id %}" class="btn btn-danger">
+            Delete...
+            </a>
+        
     </div>
 </div>
 <br />
