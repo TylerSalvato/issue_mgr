@@ -27,17 +27,16 @@ class IssueCreateView(UserPassesTestMixin, CreateView):
     template_name = "issues/new.html"
     model = Issue
     fields = ["summary", "description", "assignee", "status"]
+    success_url = reverse_lazy('list')  # Set the URL to redirect to upon successful form submission
+
+    def test_func(self):
+        # Implement the condition here
+        return self.request.user.is_authenticated
 
     def form_valid(self, form):
         form.instance.reporter = self.request.user  # Set the reporter field
         return super().form_valid(form)
 
-    def get_success_url(self):
-        return reverse_lazy('list')
-    
-    def test_func(self):
-        post = self.get_object()
-        return self.request.user.is_product_owner
 
 class IssueUpdateView(UserPassesTestMixin, UpdateView):
     template_name = "issues/edit.html"

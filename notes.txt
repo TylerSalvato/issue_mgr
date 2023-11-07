@@ -94,3 +94,10 @@ class ArchivedIssueListView(LoginRequiredMixin, ListView):
 
             path("drafts/", views.DraftIssueListView.as_view(), name="drafts"),
     path("archived/", views.ArchivedIssueListView.as_view(), name="archived"),
+
+        def get_success_url(self):
+        return reverse_lazy('list')
+    
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user.is_product_owner
