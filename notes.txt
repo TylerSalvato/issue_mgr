@@ -35,7 +35,7 @@ git add -A
 git commit -m "something"
 git push heroku main
 heroku open
-heroku log --tail
+heroku logs --tail
 
 python3 manage.py flush
 rm db.sqlite3
